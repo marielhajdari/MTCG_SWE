@@ -1,4 +1,4 @@
-package marielhajdari.mtcg.userrelated;
+package collection;
 
 public enum MonsterType {
     Knight,

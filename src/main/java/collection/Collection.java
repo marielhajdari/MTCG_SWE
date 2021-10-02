@@ -1,7 +1,4 @@
-package marielhajdari.mtcg.userrelated;
-
-import lombok.Builder;
-import lombok.Data;
+package collection;
 
 import java.util.LinkedList;
 

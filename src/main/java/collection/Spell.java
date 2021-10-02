@@ -1,7 +1,6 @@
-package marielhajdari.mtcg.userrelated;
+package collection;
 
 import lombok.Builder;
-import lombok.Data;
 
 public class Spell extends Card{
     @Builder (builderMethodName = "SpellBuilder")

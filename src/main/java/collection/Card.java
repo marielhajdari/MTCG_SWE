@@ -1,4 +1,4 @@
-package marielhajdari.mtcg.userrelated;
+package collection;
 
 import lombok.Builder;
 import lombok.Data;
