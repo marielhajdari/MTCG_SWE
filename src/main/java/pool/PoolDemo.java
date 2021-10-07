@@ -1,8 +1,8 @@
-package collection;
+package pool;
 
-public class CollectionDemo {
+public class PoolDemo {
     public static void main(String[] args) {
-        Collection c = new Collection();
+        Pool c = new Pool();
         c.showCollection();
         System.out.println("Hello");
     }

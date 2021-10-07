@@ -1,14 +1,14 @@
-package collection;
+package pool;
 
 import java.util.LinkedList;
 
 
 
-public class Collection {
+public class Pool {
     LinkedList<Monster> ListOfMonsters = new LinkedList<Monster>();
     LinkedList<Spell> ListOfSpells = new LinkedList<Spell>();
 
-    public Collection() {
+    public Pool() {
         for (int i = 0; i < 5; i++){
             ListOfMonsters.add(randomMonster());
         }
@@ -41,6 +41,6 @@ public class Collection {
             System.out.println(ListOfMonsters.get(i));
         }
     }
-    public void createPackage(){}
+    //public void createPackage(){}
 
 }

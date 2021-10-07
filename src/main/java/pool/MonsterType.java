@@ -1,4 +1,4 @@
-package collection;
+package pool;
 
 public enum MonsterType {
     Knight,

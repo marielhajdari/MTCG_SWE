@@ -1,4 +1,4 @@
-package collection;
+package pool;
 
 import lombok.Builder;
 
