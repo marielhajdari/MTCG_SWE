@@ -1,12 +1,13 @@
 package pool;
 
 import java.util.LinkedList;
-
+import java.util.Random;
 
 
 public class Pool {
-    LinkedList<Monster> ListOfMonsters = new LinkedList<Monster>();
-    LinkedList<Spell> ListOfSpells = new LinkedList<Spell>();
+    private LinkedList<Monster> ListOfMonsters = new LinkedList<Monster>();
+    private LinkedList<Spell> ListOfSpells = new LinkedList<Spell>();
+    private LinkedList<Card> cardPackage = new LinkedList<Card>();
 
     public Pool() {
         for (int i = 0; i < 5; i++){
@@ -41,6 +42,27 @@ public class Pool {
             System.out.println(ListOfMonsters.get(i));
         }
     }
-    //public void createPackage(){}
 
+    public void createCardPackage(){
+        Random rand = new Random();
+        for (int i = 0; i < 5; i++){
+            if (rand.nextInt(2) == 0){
+                cardPackage.add(ListOfMonsters.get(rand.nextInt(ListOfMonsters.size())));
+            }else {
+                cardPackage.add(ListOfSpells.get(rand.nextInt(ListOfSpells.size())));
+            }
+        }
+        showCardPackage();
+    }
+
+    public void emptyCardPackage(){
+        cardPackage.clear();
+    }
+
+    public void showCardPackage(){
+        for (int i = 0; i < cardPackage.size() ; i++){
+            System.out.println(cardPackage.get(i));
+        }
+        emptyCardPackage();
+    }
 }

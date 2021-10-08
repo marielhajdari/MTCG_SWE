@@ -5,5 +5,12 @@ public class PoolDemo {
         Pool c = new Pool();
         c.showCollection();
         System.out.println("Hello");
+        System.out.println("");
+        c.createCardPackage();
+
+        System.out.println("2");
+        c.createCardPackage();
+        System.out.println("3");
+        c.createCardPackage();
     }
 }
