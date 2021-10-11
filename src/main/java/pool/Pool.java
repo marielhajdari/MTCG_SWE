@@ -1,7 +1,15 @@
 package pool;
 
+import lombok.Builder;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.annotation.ElementType;
 import java.util.LinkedList;
 import java.util.Random;
+
+import static java.lang.Integer.parseInt;
 
 
 public class Pool {
@@ -10,31 +18,58 @@ public class Pool {
     private LinkedList<Card> cardPackage = new LinkedList<Card>();
 
     public Pool() {
-        for (int i = 0; i < 5; i++){
+        BufferedReader reader;
+        try{
+            reader = new BufferedReader(new FileReader("pool_of_all_cards.txt"));
+            String line = reader.readLine();
+            while (line != null) {
+                addToPool(line);
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        /*for (int i = 0; i < 5; i++){
             ListOfMonsters.add(randomMonster());
         }
         for (int i = 0; i < 5; i++){
             ListOfSpells.add(randomSpell());
+        }*/
+    }
+
+    private void addToPool(String inputLine){
+        if (inputLine != null){
+            String[] result = inputLine.split(";");
+            if (result[0].equals("M")){
+                //System.out.println(result[0] + " " + result[1] + " " + result[2] + " " + result[3] + "!");
+                ListOfMonsters.add(Monster.MonsterBuilder()
+                        .name(result[2])
+                        .damage(parseInt(result[3]))
+                        .elementType(returnElementType(result[1]))
+                        .build());
+            } else {
+                //System.out.println(result[0] + " " + result[1] + " " + result[2] + "?");
+                ListOfSpells.add(Spell.SpellBuilder()
+                        .name("Spell" + result[1])
+                        .damage(parseInt(result[2]))
+                        .elementType(returnElementType(result[1]))
+                        .build());
+            }
         }
     }
 
-    private Spell randomSpell(){
-        return Spell.SpellBuilder()
-                .name("Spell"+String.valueOf(SpellType.Water))
-                .damage(20)
-                .elementType(String.valueOf(SpellType.Water))
-                .build();
+    private String returnElementType(String inputLine){
+        switch (inputLine){
+            case "Fire" : return SpellType.Fire.toString();
+            case "Water" : return SpellType.Water.toString();
+            case "Normal" : return SpellType.Normal.toString();
+            default: System.out.println("Bad input!");
+        }
+        return "none";
     }
 
-    private Monster randomMonster(){
-        return Monster.MonsterBuilder()
-                .name(String.valueOf(MonsterType.Knight))
-                .damage(40)
-                .elementType(String.valueOf(SpellType.Fire))
-                .build();
-    }
-
-    public void showCollection(){
+    public void showPool(){
         for (int i = 0; i < ListOfSpells.size(); i++){
             System.out.println(ListOfSpells.get(i));
         }

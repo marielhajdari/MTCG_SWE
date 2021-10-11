@@ -1,0 +1,10 @@
+M;Fire;Knight;50;
+M;Fire;Knight;50;
+M;Fire;Knight;50;
+M;Fire;Knight;50;
+M;Fire;Knight;50;
+S;Water;30
+S;Water;30
+S;Water;30
+S;Water;30
+S;Water;40
