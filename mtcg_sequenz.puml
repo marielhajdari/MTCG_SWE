@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+User -> Pool : buyCardPackage()
+Pool -> Pool : createCardPackage()
+Pool -> User : showCardPackage()
+
+User -> Server : readyForBattle()
+Server -> User : waitingForOpponent()
+Server -> User : battleStart()
+
+
+PlayerA -> Battle : attackOpponent()
+PlayerB -> Battle : defendFromAttack()
+Battle -> PlayerA : print "You won the battle!"
+Battle -> PlayerB : print "You lost the battle!"
+
+
+PlayerA -> Battle : attackOpponent()
+PlayerB -> Battle : attackOpponent()
+Battle -> PlayerA : print "You lost the battle!"
+Battle -> PlayerB : print "You won the battle!"
+
+PlayerA -> Battle : defendFromAttack()
+PlayerB -> Battle : defendFromAttack()
+Battle -> PlayerA : print "You draw the battle!"
+Battle -> PlayerB : print "You draw the battle!"
+
+
+@enduml
