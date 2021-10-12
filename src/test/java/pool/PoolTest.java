@@ -3,6 +3,7 @@ package pool;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -100,7 +101,20 @@ class PoolTest {
 
     @Test
     void bufferedReaderTest(){
+        String input = "M;Fire;Knight;50;";
+        String readFile;
         BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader("pool_of_all_cards.txt"));
+            readFile = reader.readLine();
+
+            assertEquals(readFile, input, "File can not be read!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void bufferedReaderCannotFileTest(){
 
     }
 }
