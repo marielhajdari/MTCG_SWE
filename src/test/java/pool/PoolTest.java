@@ -1,6 +1,7 @@
 package pool;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -156,4 +157,24 @@ class PoolTest {
         assertTrue(p.getCardPackage().size() == cardPack.length, "Error in getCardPackage method!");
     }
 
+    @Test
+    void cardInsTest(){ // card instanz test
+        Card c = Card.builder()
+                .name("Knight")
+                .elementType("Water")
+                .damage(70)
+                .build();
+        assertTrue(c.getName().equals(MonsterType.Knight.toString())
+                && c.getDamage() == 70
+                && c.getElementType().equals(SpellType.Water.toString()), "Card Instanz fehler!");
+    }
+
+    @Mock Pool p;
+
+    /*
+    @Test(expected = FileNotFoundException.class)
+    void catchIOExceptionTest() throws FileNotFoundException{
+        p = new Pool("wrongName.txt");
+    }
+    */
 }
