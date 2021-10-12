@@ -8,11 +8,13 @@ public class PoolDemo {
         System.out.println("Hello");
         System.out.println("");
         c.createCardPackage();
-
+        c.showCardPackage();
         System.out.println("2");
         c.createCardPackage();
+        c.showCardPackage();
         System.out.println("3");
         c.createCardPackage();
+        c.showCardPackage();
 
         System.out.println();
     }

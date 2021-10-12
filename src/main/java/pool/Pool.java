@@ -1,6 +1,7 @@
 package pool;
 
 import lombok.Builder;
+import lombok.Data;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,7 +12,7 @@ import java.util.Random;
 
 import static java.lang.Integer.parseInt;
 
-
+@Data
 public class Pool {
     private LinkedList<Monster> ListOfMonsters = new LinkedList<Monster>();
     private LinkedList<Spell> ListOfSpells = new LinkedList<Spell>();
@@ -59,14 +60,13 @@ public class Pool {
         }
     }
 
-    private String returnElementType(String inputLine){
+    public String returnElementType(String inputLine){
         switch (inputLine){
             case "Fire" : return SpellType.Fire.toString();
             case "Water" : return SpellType.Water.toString();
             case "Normal" : return SpellType.Normal.toString();
-            default: System.out.println("Bad input!");
         }
-        return "none";
+        return "None";
     }
 
     public void showPool(){
@@ -87,7 +87,6 @@ public class Pool {
                 cardPackage.add(ListOfSpells.get(rand.nextInt(ListOfSpells.size())));
             }
         }
-        showCardPackage();
     }
 
     public void emptyCardPackage(){
