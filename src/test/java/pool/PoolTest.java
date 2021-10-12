@@ -14,7 +14,7 @@ class PoolTest {
 
     @Test
     void showPoolTest() {
-        Pool p = new Pool();
+        Pool p = new Pool("pool_of_all_cards.txt");
         p.showPool();
         int size = p.getListOfMonsters().size() + p.getListOfSpells().size();
         int countLinesPool = 0;
@@ -36,7 +36,7 @@ class PoolTest {
 
     @Test
     void createCardPackageTest() {
-        Pool p = new Pool();
+        Pool p = new Pool("pool_of_all_cards.txt");
         p.createCardPackage();
         int length = p.getCardPackage().size();
 
@@ -45,7 +45,7 @@ class PoolTest {
 
     @Test
     void emptyCardPackageTest() {
-        Pool p = new Pool();
+        Pool p = new Pool("pool_of_all_cards.txt");
         p.createCardPackage();
         p.emptyCardPackage();
         int size = p.getCardPackage().size();
@@ -55,7 +55,7 @@ class PoolTest {
 
     @Test
     void showCardPackageTest() {
-        Pool p = new Pool();
+        Pool p = new Pool("pool_of_all_cards.txt");
         p.createCardPackage();
         int length = p.getCardPackage().size();
         p.showCardPackage();
@@ -66,7 +66,7 @@ class PoolTest {
     @Test
     void returnElementTypeShouldBeFireTest(){
         String input = "Fire";
-        Pool p = new Pool();
+        Pool p = new Pool("pool_of_all_cards.txt");
         String shouldBeFire = p.returnElementType(input);
 
         assertTrue( shouldBeFire.equals("Fire"), "Element type should be fire!");
@@ -75,7 +75,7 @@ class PoolTest {
     @Test
     void returnElementTypeShouldBeWaterTest(){
         String input = "Water";
-        Pool p = new Pool();
+        Pool p = new Pool("pool_of_all_cards.txt");
         String shouldBeWater = p.returnElementType(input);
 
         assertTrue( shouldBeWater.equals("Water"), "Element type should be water!");
@@ -84,7 +84,7 @@ class PoolTest {
     @Test
     void returnElementTypeShouldBeNormalTest(){
         String input = "Normal";
-        Pool p = new Pool();
+        Pool p = new Pool("pool_of_all_cards.txt");
         String shouldBeNormal = p.returnElementType(input);
 
         assertTrue( shouldBeNormal.equals("Normal"), "Element type should be normal!");
@@ -93,7 +93,7 @@ class PoolTest {
     @Test
     void returnElementTypeShouldBeNoneTest(){
         String input = "Fir";
-        Pool p = new Pool();
+        Pool p = new Pool("pool_of_all_cards.txt");
         String shouldBeNone = p.returnElementType(input);
 
         assertTrue( shouldBeNone.equals("None"), "Element type should be None!");
@@ -113,8 +113,47 @@ class PoolTest {
             e.printStackTrace();
         }
     }
-
-    void bufferedReaderCannotFileTest(){
-
+    /*
+    @Test
+    public void bufferedReaderCannotFileTest() throws IOException{
+        Pool p = new Pool("wrongName.txt");
+        assertThrows(IOException.class, () -> new Pool("wrongName.txt"));
     }
+    */
+
+    @Test
+    void nameShouldBeKnight(){
+        String nameKnight = MonsterType.Knight.toString();
+        Pool p = new Pool("pool_of_all_cards.txt");
+        //System.out.println(p.getListOfMonsters().get(0));
+        Monster name = p.getListOfMonsters().get(0);
+        String cardName = name.getName();
+
+        assertTrue(cardName.equals(nameKnight), "Name should be Knight.");
+    }
+
+    @Test
+    void getListOfMonstersTest(){
+        Pool p = new Pool("pool_of_all_cards.txt");
+        Monster[] monsterL = p.getListOfMonsters().toArray(new Monster[0]);
+
+        assertTrue(p.getListOfMonsters().size() == monsterL.length, "Error in getListOfMonsters method!");
+    }
+
+    @Test
+    void getListOfSpellsTest(){
+        Pool p = new Pool("pool_of_all_cards.txt");
+        Spell[] spellL = p.getListOfSpells().toArray(new Spell[0]);
+
+        assertTrue(p.getListOfSpells().size() == spellL.length, "Error in getListOfSpells method!");
+    }
+
+    @Test
+    void getCardPackageTest(){
+        Pool p = new Pool("pool_of_all_cards.txt");
+        Card[] cardPack = p.getCardPackage().toArray(new Card[0]);
+
+        assertTrue(p.getCardPackage().size() == cardPack.length, "Error in getCardPackage method!");
+    }
+
 }

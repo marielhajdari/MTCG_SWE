@@ -2,6 +2,7 @@ package pool;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,16 +13,16 @@ import java.util.Random;
 
 import static java.lang.Integer.parseInt;
 
-@Data
+@Getter
 public class Pool {
     private LinkedList<Monster> ListOfMonsters = new LinkedList<Monster>();
     private LinkedList<Spell> ListOfSpells = new LinkedList<Spell>();
     private LinkedList<Card> cardPackage = new LinkedList<Card>();
 
-    public Pool() {
+    public Pool(String inputFile) {
         BufferedReader reader;
         try{
-            reader = new BufferedReader(new FileReader("pool_of_all_cards.txt"));
+            reader = new BufferedReader(new FileReader(inputFile));
             String line = reader.readLine();
             while (line != null) {
                 addToPool(line);
