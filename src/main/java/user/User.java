@@ -6,7 +6,9 @@ import pool.Card;
 import pool.Pool;
 
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 @Data
 public class User {
@@ -98,18 +100,28 @@ public class User {
     }
 
     public void setTradeRequest(){
-        if (userStack.getStack() == null){
+        if (userStack.getStack().isEmpty()){
             System.out.println("Your Stack is empty, therefore you cannot set a trade offer on the market!");
             System.out.println("Buy a card package, to be able to set a trade offer!");
         } else {
+            System.out.println("######################################################");
+            possibleTradeCards();
+            System.out.println("######################################################");
+            Scanner cardToTrade = new Scanner(System.in);
+            System.out.println("Type the number of the cards you want to trade: ");
+            int cardNumber = cardToTrade.nextInt();
 
+            // Here should be a connection to the server,
+            // in order to save this card in the market(which will show on server)
+            // till server is complete a printLine will suffice
+            System.out.println("Card: " + userStack.getStack().get(cardNumber-1) + "is set on trade market");
         }
     }
 
     public void possibleTradeCards(){
         int indexCards = 1;
         for (Card inStack: userStack.getStack()) {
-            System.out.println("Card Number: " + indexCards + inStack);
+            System.out.println("Card Number: " + indexCards + "\t" + inStack);
             indexCards++;
         }
     }
