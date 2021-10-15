@@ -2,13 +2,19 @@ package user;
 
 import lombok.Builder;
 import lombok.Data;
+import pool.Card;
 
-@Builder
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 @Data
 public class Stack {
-    private int cardID;
-    boolean isDeck;
+    private LinkedList<Card> stack = new LinkedList<>();
+
+    public Stack(){
+        // do nothing
+    }
 
     public void manageDeck(){}
-
 }

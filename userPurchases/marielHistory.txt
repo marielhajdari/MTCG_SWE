@@ -1,0 +1,1 @@
+[Card(name=Knight, damage=50, elementType=Fire), Card(name=SpellWater, damage=30, elementType=Water), Card(name=Knight, damage=50, elementType=Fire), Card(name=SpellWater, damage=30, elementType=Water), Card(name=SpellWater, damage=30, elementType=Water)]
