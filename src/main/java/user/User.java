@@ -35,8 +35,8 @@ public class User {
         inputPool.createCardPackage();
         for (int i = 0; i < 5 ; i++){
             insertIntoStack(inputPool.getCardPackage().get(i));
+            addHistory(inputPool.getCardPackage().get(i));
         }
-        addHistory(inputPool.getCardPackage());
         coins-=5;
     }
 
@@ -58,13 +58,27 @@ public class User {
         }
     }
 
-    private void addHistory(LinkedList<Card> inputList){
-        try{
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("./userPurchases/" + username + "History.txt")));
-            writer.write(inputList.toString() + System.lineSeparator());
-            writer.close();
-        }catch (IOException e){
+    private void addHistory(Card inputCard){
+        File file = new File("./userPurchases/" + username + "History.txt");
+        FileWriter fr = null;
+        BufferedWriter br = null;
+        PrintWriter pr = null;
+        try {
+            // to append to file, you need to initialize FileWriter using below constructor
+            fr = new FileWriter(file, true);
+            br = new BufferedWriter(fr);
+            pr = new PrintWriter(br);
+            pr.println(inputCard.toString());
+        } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                pr.close();
+                br.close();
+                fr.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -83,7 +97,22 @@ public class User {
         }
     }
 
-    public void setTradeRequest(){}
+    public void setTradeRequest(){
+        if (userStack.getStack() == null){
+            System.out.println("Your Stack is empty, therefore you cannot set a trade offer on the market!");
+            System.out.println("Buy a card package, to be able to set a trade offer!");
+        } else {
+
+        }
+    }
+
+    public void possibleTradeCards(){
+        int indexCards = 1;
+        for (Card inStack: userStack.getStack()) {
+            System.out.println("Card Number: " + indexCards + inStack);
+            indexCards++;
+        }
+    }
 
     public void acceptTradeMarket(){}
 }
