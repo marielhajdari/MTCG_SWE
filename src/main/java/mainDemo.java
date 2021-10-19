@@ -8,6 +8,7 @@ public class mainDemo {
         me.setTradeRequest();
         me.buyPackage(p);
         me.setTradeRequest();
-
+        System.out.println();
+        me.showPurchaseHistory();
     }
 }

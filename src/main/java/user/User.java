@@ -25,13 +25,6 @@ public class User {
         coins = 20;
     }
 
-    public User(String username, String pass, int elo, int coins) {
-        this.username = username;
-        this.pass = pass;
-        this.elo = elo;
-        this.coins = coins;
-    }
-
     public void buyPackage(Pool inputPool){
         createFile();
         inputPool.createCardPackage();
