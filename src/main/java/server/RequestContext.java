@@ -8,7 +8,7 @@ public class RequestContext {
     private StringBuilder payload;
     private String headerInfo;
     public String ServerResponse="HTTP/1.1 200 OK.\r\n"+
-            "Server: Denis\r\n"+
+            "Server: Mariel\r\n"+
             "Content-Type: text/html\r\n"+
             "Accept-Ranges: bytes\r\n"+
             "Content-Length:1\r\n\r\n";
