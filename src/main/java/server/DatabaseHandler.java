@@ -16,7 +16,7 @@ public class DatabaseHandler {
         username="postgres";
         password="root";
         connection = DriverManager.getConnection(jdbcURL,username,password);
-        //System.out.println("Database Connected");
+        // System.out.println("Database Connected");
     }
     public Connection getConnection(){
         return connection;

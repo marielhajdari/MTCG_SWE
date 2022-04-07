@@ -53,7 +53,7 @@ public class ClientThread extends Thread {
                 if (dbHandler.validateUser(userManager.at(position).getUsername(), userManager.at(position).getPassword())) {
                     tokenGenerator.generateToken(userManager.at(position).getUsername());
                 } else {
-                    System.out.println("Wrong username or password");
+                    System.out.println("Wrong username or password!");
                 }
                 userManager.at(position).resetPassword();
                 out.println(handler.ServerResponse);

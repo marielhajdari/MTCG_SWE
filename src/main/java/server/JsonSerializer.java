@@ -11,6 +11,7 @@ public class JsonSerializer {
     public Card convertCardToObject(String jsonCard) throws JsonProcessingException {
         ObjectMapper objectMapper=new ObjectMapper();
         Card card;
+
         if(jsonCard.contains("Spell")){
             card = objectMapper.readValue(jsonCard, SpellCard.class);
         }
