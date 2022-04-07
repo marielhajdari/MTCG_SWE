@@ -12,9 +12,9 @@ public class DatabaseHandler {
     PasswordHasher pwHasher=new PasswordHasher();
     Statement stmt;
     public DatabaseHandler() throws SQLException {
-        jdbcURL="jdbc:postgresql://localhost:5432/MonsterCardGame";
-        username="postgres";
-        password="root";
+        jdbcURL="jdbc:postgresql://localhost:5555/mariel";
+        username="mariel";
+        password=""; // postgres
         connection = DriverManager.getConnection(jdbcURL,username,password);
         // System.out.println("Database Connected");
     }
