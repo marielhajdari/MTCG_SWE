@@ -4,9 +4,9 @@
 autonumber
 
 
-User -> Pool : buyCardPackage()
-Pool -> Pool : createCardPackage()
-Pool -> User : showCardPackage()
+User -> Stack : buyCardPackage()
+Stack -> Stack : createCardPackage()
+Stack -> User : showCardPackage()
 
 User -> Server : readyForBattle()
 Server -> User : waitingForOpponent()
