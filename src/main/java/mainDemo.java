@@ -18,7 +18,7 @@ public class mainDemo {
                     Socket clientSocket = serverSocket.accept();
                     //System.out.println(clientSocket);
                     if (clientSocket != null) {
-                        System.out.println("Connected");
+                        System.out.println("############################################");
                     }
                     ClientThread clientThread=new ClientThread(clientSocket,userManager);
                     clientThread.run();

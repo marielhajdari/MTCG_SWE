@@ -1,0 +1,116 @@
+Drop schema if exists "MonsterCardGame";
+Drop Table if exists "MonsterCardGame".battlelog;
+Drop Table if exists "MonsterCardGame".card;
+Drop Table if exists "MonsterCardGame".package;
+Drop Table if exists "MonsterCardGame".stats;
+Drop Table if exists "MonsterCardGame"."user";
+
+CREATE SCHEMA "MonsterCardGame";
+
+CREATE TABLE "MonsterCardGame".battlelog (
+    battleid integer NOT NULL,
+    winnerid integer NOT NULL,
+    loserid integer NOT NULL,
+    battletime timestamp without time zone DEFAULT now() NOT NULL,
+    draw boolean DEFAULT false NOT NULL
+);
+
+CREATE TABLE "MonsterCardGame".card (
+    cardnumber integer NOT NULL,
+    cardserialid character varying(255) NOT NULL,
+    carddamage integer NOT NULL,
+    cardname character varying(100) NOT NULL,
+    cardattribute character varying(255),
+    cardmonster character varying(255),
+    packageid integer
+);
+
+CREATE TABLE "MonsterCardGame".package (
+    packageid integer NOT NULL,
+    packagename character varying(100) DEFAULT 'package'::character varying,
+    packagecost integer DEFAULT 5,
+    userid integer
+);
+
+CREATE TABLE "MonsterCardGame".stats (
+    scoreid integer NOT NULL,
+    userid integer NOT NULL,
+    elo integer DEFAULT 100 NOT NULL,
+    wins integer DEFAULT 0 NOT NULL,
+    losses integer DEFAULT 0 NOT NULL,
+    draws integer DEFAULT 0 NOT NULL
+);
+
+CREATE TABLE "MonsterCardGame"."user" (
+    userid integer NOT NULL,
+    username character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    vcoins integer DEFAULT 20 NOT NULL,
+    bio character varying(255) DEFAULT 'default bio'::character varying,
+    image character varying(255) DEFAULT 'empty'::character varying,
+    firstname character varying(255) DEFAULT 'anonym'::character varying
+);
+
+
+ALTER TABLE ONLY "MonsterCardGame".battlelog
+    ADD CONSTRAINT battlelog_pkey PRIMARY KEY (battleid);
+
+
+ALTER TABLE ONLY "MonsterCardGame".card
+    ADD CONSTRAINT card_cardserialid_key UNIQUE (cardserialid);
+
+
+ALTER TABLE ONLY "MonsterCardGame".card
+    ADD CONSTRAINT card_pkey PRIMARY KEY (cardnumber);
+
+
+ALTER TABLE ONLY "MonsterCardGame".package
+    ADD CONSTRAINT package_pkey PRIMARY KEY (packageid);
+
+
+ALTER TABLE ONLY "MonsterCardGame".stats
+    ADD CONSTRAINT stats_pkey PRIMARY KEY (scoreid);
+
+
+ALTER TABLE ONLY "MonsterCardGame"."user"
+    ADD CONSTRAINT user_pkey PRIMARY KEY (userid);
+
+
+ALTER TABLE ONLY "MonsterCardGame"."user"
+    ADD CONSTRAINT user_username_key UNIQUE (username);
+
+
+ALTER TABLE ONLY "MonsterCardGame".package
+    ADD CONSTRAINT "fk.user_id" FOREIGN KEY (userid) REFERENCES "MonsterCardGame"."user"(userid) ON DELETE CASCADE;
+
+
+ALTER TABLE ONLY "MonsterCardGame".battlelog
+    ADD CONSTRAINT fk_loserid FOREIGN KEY (winnerid) REFERENCES "MonsterCardGame"."user"(userid);
+
+
+ALTER TABLE ONLY "MonsterCardGame".card
+    ADD CONSTRAINT fk_package FOREIGN KEY (packageid) REFERENCES "MonsterCardGame".package(packageid) ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "MonsterCardGame".stats
+    ADD CONSTRAINT fk_user FOREIGN KEY (userid) REFERENCES "MonsterCardGame"."user"(userid) ON DELETE CASCADE;
+
+
+
+ALTER TABLE ONLY "MonsterCardGame".battlelog
+    ADD CONSTRAINT fk_winnerid FOREIGN KEY (winnerid) REFERENCES "MonsterCardGame"."user"(userid);
+
+
+GRANT ALL ON TABLE "MonsterCardGame".battlelog TO PUBLIC;
+GRANT ALL ON TABLE "MonsterCardGame".card TO PUBLIC;
+GRANT ALL ON TABLE "MonsterCardGame".package TO PUBLIC;
+GRANT ALL ON TABLE "MonsterCardGame".stats TO PUBLIC;
+GRANT ALL ON TABLE "MonsterCardGame"."user" TO PUBLIC;
+
+
+
+
+
+
+
